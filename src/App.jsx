@@ -1,10 +1,11 @@
 import React from 'react'
+import Home from './pages/Home'
+import './assets/css/main.css'
 
 export default function App() {
   return (
     <div>
-      <p className="text-sky-400/100">The quick brown fox...</p>
-
+      <Home />
     </div>
   )
 }
