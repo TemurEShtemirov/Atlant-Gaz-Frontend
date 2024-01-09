@@ -4,7 +4,7 @@ import './assets/css/main.css'
 
 export default function App() {
   return (
-    <div>
+    <div className='bg-[#2D2D2D]'>
       <Home />
     </div>
   )
