@@ -4,16 +4,17 @@ import '../assets/css/home.css'
 import '../assets/css/main.css'
 
 import Logo from '../assets/images/Logo.png'
-import { MoonIcon } from '../components/MoonIcon'
-import { SignIcon } from '../components/SignIcon'
-import { SunIcon } from '../components/SunIcon'
-import { CloudIcon } from '../components/CloudIcon'
-import { SnowIcon } from '../components/SnowIcon'
+import { MoonIcon } from '../assets/images/MoonIcon'
+import { SignIcon } from '../assets/images/SignIcon'
+import { SunIcon } from '../assets/images/SunIcon'
+import { CloudIcon } from '../assets/images/CloudIcon'
+import { SnowIcon } from '../assets/images/SnowIcon'
 import Truck from '../assets/images/truck.png'
-import { SignIcon2 } from '../components/SignIcon2'
+import { SignIcon2 } from '../assets/images/SignIcon2'
+import Truck2 from '../assets/images/truck2.png'
 
 import Modal from '@mui/material/Modal';
-import { CloseIcon } from '../components/CloseIcon'
+import { CloseIcon } from '../assets/images/CloseIcon'
 import { TextField } from '@mui/material'
 
 
@@ -89,8 +90,27 @@ export default function Home() {
 
         )
     }
+
+    const SignBottom = () => {
+        return (
+            <div style={{ zIndex: "9999" }} className='text-center justify-center items-center ml-[530px] mt-[-20px]'>
+                <svg className='ml-[23.3px]' xmlns="http://www.w3.org/2000/svg" width={49} height={26} viewBox="0 0 49 26" fill="none">
+                    <path d="M1 1L24.5 24.5L48 1" stroke="#2194FF" />
+                </svg>
+
+                <svg className='ml-[12px]' xmlns="http://www.w3.org/2000/svg" width={73} height={38} viewBox="0 0 73 38" fill="none">
+                    <path d="M1 1L36.5 37L72 1" stroke="#2194FF" />
+                </svg>
+
+                <svg className='' xmlns="http://www.w3.org/2000/svg" width="101" height="52" viewBox="0 0 101 52" fill="none">
+                    <path d="M1 1L50.5 51L100 1" stroke="#2194FF" />
+                </svg>
+            </div>
+        );
+    }
+
     return (
-        <div>
+        <div className='w-full'>
             <header className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <div className="flex lg:flex-1">
                     <a href="#" className="m-1.5 p-1.5">
@@ -113,7 +133,7 @@ export default function Home() {
             </header>
 
             <main className='mainHome'>
-                <section className='grid grid-flow-col auto-cols-max'>
+                <section className='grid grid-flow-col auto-cols-max' >
                     <div className="flex z-10">
                         <div className="flex">
                             <MoonIcon />&nbsp; &nbsp; <SignIcon /> &nbsp; &nbsp; <SunIcon />
@@ -168,13 +188,13 @@ export default function Home() {
                                         id="outlined-basic-2"
                                         label="Email"
                                         variant="outlined"
-                                        style={{marginTop: "15px" }}
+                                        style={{ marginTop: "15px" }}
                                         className="bg-white text-white ml-14 w-[402px]"
                                     />
 
-                                    <button className="bg-[#2194FF] w-[341px] ml-4 h-[87px] mt-4 p-4 rounded-xl">
+                                    <button className="bg-[#2194FF] w-[341px] ml-4 h-[87px] mt-4 p-4 rounded-xl" style={{ marginLeft: "30px" }}>
                                         <TopOrnament2 />
-                                        <p style={{zIndex:"-10"}} className='text-[#F1F1F1] font-bold text-2xl mt-[-25px]'>  Заказать доставку газа <br />
+                                        <p style={{ zIndex: "-10" }} className='text-[#F1F1F1] font-bold text-2xl mt-[-25px]'>  Заказать доставку газа <br />
                                             в газгольдер</p>
                                         <BottomOrnament2 />
                                     </button>
@@ -186,6 +206,137 @@ export default function Home() {
                     <div className="z-0">
                         <img className='absolute ml-[150px]' src={Truck} alt="Image Truck" />
                     </div>
+                </section>
+
+                <section className='mt-[20px]' style={{ backgroundColor: 'rgba(33, 148, 255, 0.05)' }}>
+                    <p className="w-full text-[#2194FF] text-center font-Russo_One text-4xl font-normal italic font-mono ml-[-15px] font-extrabold">Стоимость газа в ваш газгольдер сегодня</p>
+                    <div className="grid grid-cols-4 mt-4">
+                        <div className="pl-2.5">
+                            <br />
+
+                            <p className="text-[#F1F1F1] font-['Russo_One'] text-4xl font-bold font-mono not-italic ">Пропан</p>
+                            <p className="text-[#2194FF] font-['Russo_One'] text-2xl font-bold not-italic font-mono">от 25 рублей за литр</p>
+                            <p className="w-[253px] mt-[21px] text-[#F1F1F1] font-['Open_Sans'] font-mono text-base not-italic">Физически испарение происходит до -40 градусов, что позволяет использовать его в наших с вами погодных условиях</p>
+
+                            <button onClick={openModal} className="custom-button">
+                                Заказать
+                            </button>
+
+                            {isModalOpen && (
+                                <div className="modal-overlay bg-white shadow-md w-[462px] h-[408px] px-8 pt-6 pb-8 mb-4 rounded-xl" >
+                                    <button className="modal-close bg-white m-3" onClick={closeModal}>
+                                        <CloseIcon />
+
+                                    </button>
+                                    <div className="modal bg-white w-auto" >
+                                        <div className="flex justify-between items-center mb-4 bg-white">
+                                            <h2 className="text-[#2194FF] font-extrabold text-2xl uppercase bg-white text-center w-full">
+                                                Доставим газ <br />
+                                                за 4 часа
+                                            </h2>
+
+                                        </div>
+
+                                        <TextField
+                                            id="outlined-basic-1"
+                                            label="Name"
+                                            variant="outlined"
+                                            // style={{ left: "160px", marginTop: "15px", color: "white" }}
+                                            className="mt-4 bg-white ml-14 justify-center text-center w-[402px]"
+                                        />
+                                        <br />
+                                        <TextField
+                                            id="outlined-basic-2"
+                                            label="Email"
+                                            variant="outlined"
+                                            style={{ marginTop: "15px" }}
+                                            className="bg-white text-white ml-14 w-[402px]"
+                                        />
+
+                                        <button className="bg-[#2194FF] w-[341px] h-[87px] mt-4 p-4 rounded-xl" style={{ marginLeft: "30px" }}>
+                                            <TopOrnament2 />
+                                            <p style={{ zIndex: "-10" }} className='text-[#F1F1F1] font-bold text-2xl mt-[-25px]'>  Заказать доставку газа <br />
+                                                в газгольдер</p>
+                                            <BottomOrnament2 />
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                        <div className="ml-[-120px]">
+                            <p className="text-[#F1F1F1] font-['Russo_One'] text-3xl text-center ml-[105px] font-bold font-mono not-italic w-full ">Идеальное соотношение</p>
+                            <div className="flex ml-[185px] mt-3">
+                                <p className="font-['Russo_One'] text-4xl font-bold not-italic font-mono" style={{ color: "rgba(241, 241, 241, 0.70)" }}>80%
+                                    <br />
+                                    пропана
+                                </p>
+                                <div className="w-[1px] h-[51px] ml-[25px] mr-[25px]" style={{ background: 'rgba(241, 241, 241, 0.30)' }}></div>
+                                <p className="font-['Russo_One'] text-4xl font-bold not-italic font-mono" style={{
+                                    color: "rgba(241, 241, 241, 0.70)"
+                                }}>
+                                    20%
+                                    <br />
+                                    бутана</p>
+                            </div>
+                            <img className='ml-[90px] mt-2' src={Truck2} alt="Image Truck2" />
+                        </div>
+                        <div className="ml-[170px]">
+                            <br />
+
+                            <p className="text-[#F1F1F1] font-['Russo_One'] text-4xl font-bold font-mono not-italic ">Бутан</p>
+                            <p className="text-[#2194FF] font-['Russo_One'] text-2xl font-bold not-italic font-mono w-full text-center">от 16 рублей за литр</p>
+                            <p className="w-[253px] mt-[21px] text-[#F1F1F1] font-['Open_Sans'] font-mono text-base not-italic">Испарение Бутана происходит только до 0 градусов и годится для использования в тёплое время года</p>
+
+                            <button onClick={openModal} className="custom-button">
+                                Заказать
+                            </button>
+
+                            {isModalOpen && (
+                                <div className="modal-overlay bg-white shadow-md w-[462px] h-[408px] px-8 pt-6 pb-8 mb-4 rounded-xl" >
+                                    <button className="modal-close bg-white m-3" onClick={closeModal}>
+                                        <CloseIcon />
+
+                                    </button>
+                                    <div className="modal bg-white w-auto" >
+                                        <div className="flex justify-between items-center mb-4 bg-white">
+                                            <h2 className="text-[#2194FF] font-extrabold text-2xl uppercase bg-white text-center w-full">
+                                                Доставим газ <br />
+                                                за 4 часа
+                                            </h2>
+
+                                        </div>
+
+                                        <TextField
+                                            id="outlined-basic-1"
+                                            label="Name"
+                                            variant="outlined"
+                                            // style={{ left: "160px", marginTop: "15px", color: "white" }}
+                                            className="mt-4 bg-white ml-14 justify-center text-center w-[402px]"
+                                        />
+                                        <br />
+                                        <TextField
+                                            id="outlined-basic-2"
+                                            label="Email"
+                                            variant="outlined"
+                                            style={{ marginTop: "15px" }}
+                                            className="bg-white text-white ml-14 w-[402px]"
+                                        />
+
+                                        <button className="bg-[#2194FF] w-[341px] h-[87px] mt-4 p-4 rounded-xl" style={{ marginLeft: "30px" }}>
+                                            <TopOrnament2 />
+                                            <p style={{ zIndex: "-10" }} className='text-[#F1F1F1] font-bold text-2xl mt-[-25px]'>  Заказать доставку газа <br />
+                                                в газгольдер</p>
+                                            <BottomOrnament2 />
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </section>
+                <SignBottom />
+                <section className="">
+                    
                 </section>
             </main>
         </div>

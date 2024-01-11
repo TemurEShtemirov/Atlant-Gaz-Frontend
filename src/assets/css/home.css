@@ -1,4 +1,22 @@
-.mainHome{
+.mainHome {
     margin-left: 160px;
     margin-top: 33px;
+}
+
+.custom-button {
+    display: inline-block;
+    width: 155px;
+    height: 43px;
+    border-radius: 50px;
+    background-color: #2194FF;
+    margin-top: 30px;
+    text-decoration: none;
+
+    padding-top: 5px;
+    color: #F1F1F1;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    font-style: normal;
 }

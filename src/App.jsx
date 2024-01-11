@@ -4,7 +4,7 @@ import './assets/css/main.css'
 
 export default function App() {
   return (
-    <div className='bg-[#2D2D2D]'>
+    <div className='bg-[#2D2D2D] w-full'>
       <Home />
     </div>
   )
