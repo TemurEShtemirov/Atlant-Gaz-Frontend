@@ -12,32 +12,37 @@ import { SnowIcon } from '../assets/images/SnowIcon'
 import Truck from '../assets/images/truck.png'
 import { SignIcon2 } from '../assets/images/SignIcon2'
 import Truck2 from '../assets/images/truck2.png'
+import BigBaloon from '../assets/images/big_baloon.png'
+import Truck3 from '../assets/images/truck3.png';
+import Calc from '../assets/images/calc.png'
+import Baloon from '../assets/images/baloon.png'
+import Lenta from '../assets/images/lenta.png'
+import Clock from '../assets/images/clock.png'
+import Sert from '../assets/images/sert.png'
+import Transp from '../assets/images/transp.png'
 
-import Modal from '@mui/material/Modal';
 import { CloseIcon } from '../assets/images/CloseIcon'
 import { TextField } from '@mui/material'
+import CreditCard from '../assets/images/CreditCard'
+import Gas from '../assets/images/Gas'
+import classNames from 'classnames';
 
-
-const customStyles = {
-    content: {
-        backgroundColor: 'white',
-        position: "absolute",
-        maxWidth: '600px',
-        maxHeight: '100px',
-        // margin: 'auto',  
-        padding: '25px',
-        borderRadius: '20px',
-        zIndex: "9999999"
-    },
-    overlay: {
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    },
-};
+import { images } from '../components'
 
 
 export default function Home() {
 
     const [isModalOpen, setModalOpen] = useState(false);
+    const [currentImage, setCurrentImage] = useState(0);
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    const nextSlide = () => {
+        setCurrentSlide((prev) => (prev + 1) % items.length);
+    };
+
+    const prevSlide = () => {
+        setCurrentSlide((prev) => (prev - 1 + items.length) % items.length);
+    };
 
     const openModal = () => setModalOpen(true);
 
@@ -91,9 +96,21 @@ export default function Home() {
         )
     }
 
+
+    const nextImage = () => {
+        setCurrentImage((prev) => (prev + 1) % images.length);
+    };
+
+    const prevImage = () => {
+        setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
+    };
+
+    const goToSlide = (index) => {
+        setCurrentImage(index);
+    };
     const SignBottom = () => {
         return (
-            <div style={{ zIndex: "9999" }} className='text-center justify-center items-center ml-[530px] mt-[-20px]'>
+            <div style={{ zIndex: "9999" }} className='text-center justify-center items-center ml-[550px] mt-[-50px]'>
                 <svg className='ml-[23.3px]' xmlns="http://www.w3.org/2000/svg" width={49} height={26} viewBox="0 0 49 26" fill="none">
                     <path d="M1 1L24.5 24.5L48 1" stroke="#2194FF" />
                 </svg>
@@ -162,7 +179,7 @@ export default function Home() {
                         </a>
 
                         {isModalOpen && (
-                            <div className="modal-overlay bg-white shadow-md w-[462px] h-[408px] px-8 pt-6 pb-8 mb-4 rounded-xl" >
+                            <div className="modal-overlay bg-white shadow-md w-[462px] h-[408px] px-8 pt-6 pb-8 mb-4 rounded-xl" style={{ zIndex: "9999" }} >
                                 <button className="modal-close bg-white m-3" onClick={closeModal}>
                                     <CloseIcon />
 
@@ -208,7 +225,7 @@ export default function Home() {
                     </div>
                 </section>
 
-                <section className='mt-[20px]' style={{ backgroundColor: 'rgba(33, 148, 255, 0.05)' }}>
+                <section className='mt-[20px]' style={{ backgroundColor: 'rgba(33, 148, 255, 0.05)', paddingBottom: "50px" }}>
                     <p className="w-full text-[#2194FF] text-center font-Russo_One text-4xl font-normal italic font-mono ml-[-15px] font-extrabold">Стоимость газа в ваш газгольдер сегодня</p>
                     <div className="grid grid-cols-4 mt-4">
                         <div className="pl-2.5">
@@ -223,7 +240,7 @@ export default function Home() {
                             </button>
 
                             {isModalOpen && (
-                                <div className="modal-overlay bg-white shadow-md w-[462px] h-[408px] px-8 pt-6 pb-8 mb-4 rounded-xl" >
+                                <div className="modal-overlay bg-white shadow-md w-[462px] h-[408px] px-8 pt-6 pb-8 mb-4 rounded-xl" style={{ zIndex: "9999" }}>
                                     <button className="modal-close bg-white m-3" onClick={closeModal}>
                                         <CloseIcon />
 
@@ -292,7 +309,7 @@ export default function Home() {
                             </button>
 
                             {isModalOpen && (
-                                <div className="modal-overlay bg-white shadow-md w-[462px] h-[408px] px-8 pt-6 pb-8 mb-4 rounded-xl" >
+                                <div className="modal-overlay bg-white shadow-md w-[462px] h-[408px] px-8 pt-6 pb-8 mb-4 rounded-xl" style={{ zIndex: "9999" }} >
                                     <button className="modal-close bg-white m-3" onClick={closeModal}>
                                         <CloseIcon />
 
@@ -335,8 +352,234 @@ export default function Home() {
                     </div>
                 </section>
                 <SignBottom />
-                <section className="">
-                    
+                <section className="mt-[20px]">
+                    <p className="ml-[-90px] text-[#F1F1F1] text-center w-full font-['Russo_One'] text-4xl not-italic font-bold font-mono">Преимущества работы с нашей компание</p>
+                    <div className="grid grid-cols-3 gap-3">
+                        <div className="mt-[20px]">
+                            <img className="ml-[100px]" src={BigBaloon} alt="" />
+                            <p className=" text-[#2194FF] font-['Russo_One'] text-2xl not-italic font-bold font-mono  w-[322px]">Экономия
+                                на хранилище </p>
+                            <p className="text-[#F1F1F1] font-['Open_Sans'] text-base font-normal not-italic font-mono mt-[10px]  w-[322px]">за счёт собственных цистерн
+                                на нашей базе</p>
+                        </div>
+                        <div className="mt-[20px]">
+                            <img className="ml-[100px]" src={Truck3} alt="" />
+                            <p className=" text-[#2194FF] font-['Russo_One'] text-2xl not-italic font-bold font-mono  w-[322px]">Экономия
+                                на транспорте</p>
+                            <p className="text-[#F1F1F1] font-['Open_Sans'] text-base font-normal not-italic font-mono mt-[10px]  w-[322px]">более 10 собственный газовозов</p>
+                        </div>
+                        <div className="">
+                            <img className="ml-[100px]" src={Calc} alt="" />
+                            <p className=" text-[#2194FF] font-['Russo_One'] text-2xl not-italic font-bold font-mono  w-[322px]">Поставки напрямую
+                                от производителей</p>
+                            <p className="text-[#F1F1F1] font-['Open_Sans'] text-base font-normal not-italic font-mono mt-[10px] w-[322px]">нет наценки на стоимость газа как у перекупщиков и небольших частных компаний</p>
+                        </div>
+                        <div className="">
+                            <img className="ml-[100px]" src={Baloon} alt="" />
+                            <p className=" text-[#2194FF] font-['Russo_One'] text-2xl not-italic font-bold font-mono  w-[322px]">Любые объёмы поставки качественного газа</p>
+                            <p className="text-[#F1F1F1] font-['Open_Sans'] text-base font-normal not-italic font-mono mt-[10px]  w-[322px]">вы получаете объем от 1 тонны до 20 тонн, с сертификатом качества газа</p>
+                        </div>
+                        <div className="mt-[20px]">
+                            <CreditCard />
+                            <p className="text-[#2194FF] font-['Russo_One'] text-2xl not-italic font-bold font-mono  w-[322px]">Оплата удобным
+                                для вас способом</p>
+                            <p className="text-[#F1F1F1] font-['Open_Sans'] text-base font-normal not-italic font-mono mt-[10px]  w-[322px]">все газовозы оснащены терминалами для оплаты вашего заказа</p>
+                        </div>
+                        <div className="mt-[20px]">
+                            <Gas />
+                            <p className=" text-[#2194FF] font-['Russo_One'] text-2xl not-italic font-bold font-mono  w-[322px]">Чистый газ
+                                без примесей</p>
+                            <p className="text-[#F1F1F1] font-['Open_Sans'] text-base font-normal not-italic font-mono mt-[10px] w-[322px]">нет наценки на стоимость газа как у перекупщиков и небольших частных компаний</p>
+                        </div>
+                        <div className="mt-[20px]">
+                            <img className="ml-[100px]" src={Lenta} alt="" />
+                            <p className=" text-[#2194FF] font-['Russo_One'] text-2xl not-italic font-bold font-mono  w-[322px]">Длина заправочных
+                                рукавов — 50 метров</p>
+                            <p className="text-[#F1F1F1] font-['Open_Sans'] text-base font-normal not-italic font-mono mt-[10px]  w-[322px]">не требуется подъезд автомобиля вплотную к резервуару</p>
+                        </div>
+                        <div className="mt-[20px]">
+                            <img className="ml-[140px]" src={Clock} alt="" />
+                            <p className=" text-[#2194FF] font-['Russo_One'] text-2xl not-italic font-bold font-mono  w-[322px]">Доставка сжиженного газа
+                                в формате 24/7</p>
+                            <p className="text-[#F1F1F1] font-['Open_Sans'] text-base font-normal not-italic font-mono mt-[10px] w-[322px]">привезем газ в удобное для вас время или же  по графику</p>
+                        </div>
+                        <div className="mt-[20px]">
+                            <img className="ml-[100px]" src={Sert} alt="" />
+                            <p className="text-[#2194FF] font-['Russo_One'] text-2xl not-italic font-bold font-mono">Аттестованный
+                                персонал</p>
+                            <p className="text-[#F1F1F1] font-['Open_Sans'] text-base font-normal not-italic font-mono mt-[10px] w-[322px]">квалифицированные сотрудники проведут полную консультацию и дадут рекомендации, если такие нужны будут</p>
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2 mt-[40px]">
+                        <div className="z-0">
+                            <img src={Transp} alt="" />
+                        </div>
+                        <div className="z-25">
+                            <p className=" text-[#F1F1F1] w-[533px] font-['Russo_One'] font-bold font-mono text-4xl not-italic">
+                                Благодаря нашему собственному автопарку мы можем
+                                давать гарантию, что доставим <p className="text-[#2194FF]">за 4 часа</p>
+                            </p>
+                            <div className="w-[533px] h-[35px] bg-[#2194FF] mt-[20px]">
+                                <p className="text-[#F1F1F1] w-[533px] font-['Open_Sans'] font-extrabold font-mono text-base not-italic pt-[5px] pl-3">Это сильное конкурентное преимущество, которым мы дорожим</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section className='' style={{ backgroundColor: 'rgba(33, 148, 255, 0.05)', paddingBottom: "50px" }}>
+                    <p className="text-center text-[#2194FF] font-['Russo_One'] text-4xl font-bold not-italic w-full font-mono pt-[34px]">Выберите свой объём Газовоза</p>
+                    <div className="max-w-screen-md mx-auto mt-8 relative">
+                        <div className="w-full overflow-hidden mt-[40px]">
+                            <div
+                                className="flex transition-transform duration-300 ease-in-out mt-[100px]"
+                                style={{ transform: `translateX(-${currentImage * 100}%)` }}
+                            >
+                                {images.map((item, index) => (
+                                    <div key={index} className="w-full flex-shrink-0">
+                                        <div className="slide-container">
+                                            <img src={item.image} alt={`Image ${index + 1}`} className="w-full" />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="absolute top-[-20px] left-0 right-0 flex justify-between items-center px-4 py-2">
+                            {images.map((item, index) => (
+                                <button
+                                    key={index}
+                                    className={classNames(
+                                        'carousel-button',
+                                        { 'active': currentImage === index }
+                                    )}
+                                    onClick={() => goToSlide(index)}
+                                >
+                                    {item.name}
+                                </button>
+                            ))}
+                        </div>
+
+                        <div className="absolute bottom-0 left-0 right-0 flex justify-between px-4 py-2">
+                            <button
+                                className={classNames(
+                                    'carousel-button',
+                                    { 'carousel-button-disabled': currentImage === 0 }
+                                )}
+                                onClick={prevImage}
+                                disabled={currentImage === 0}
+                            >
+                                {`← ${currentImage === 0 ? images.length : currentImage}`}
+                            </button>
+                            <button
+                                className={classNames(
+                                    'carousel-button',
+                                    { 'carousel-button-disabled': currentImage === images.length - 1 }
+                                )}
+                                onClick={nextImage}
+                                disabled={currentImage === images.length - 1}
+                            >
+                                {`${currentImage === images.length - 1 ? 1 : currentImage + 2} →`}
+                            </button>
+                        </div>
+                    </div>
+                    <button onClick={openModal} className="bg-[#2194FF] w-96 h-auto text-[#F1F1F1] font-['Russo_One'] font-mono font-semibold not-italic text-3xl text-center text-shadow-sm shadow-indigo-500/50 rounded-xl mt-[-100px] ml-[490px]">
+                        <TopOrnament />
+                        Заказать газ
+                        <BottomOrnament />
+                    </button>
+
+                    {isModalOpen && (
+                        <div className="modal-overlay bg-white shadow-md w-[462px] h-[408px] px-8 pt-6 pb-8 mb-4 rounded-xl" style={{ zIndex: "9999" }} >
+                            <button className="modal-close bg-white m-3" onClick={closeModal}>
+                                <CloseIcon />
+
+                            </button>
+                            <div className="modal bg-white w-auto" >
+                                <div className="flex justify-between items-center mb-4 bg-white">
+                                    <h2 className="text-[#2194FF] font-extrabold text-2xl uppercase bg-white text-center w-full">
+                                        Доставим газ <br />
+                                        за 4 часа
+                                    </h2>
+
+                                </div>
+
+                                <TextField
+                                    id="outlined-basic-1"
+                                    label="Name"
+                                    variant="outlined"
+                                    // style={{ left: "160px", marginTop: "15px", color: "white" }}
+                                    className="mt-4 bg-white ml-14 justify-center text-center w-[402px]"
+                                />
+                                <br />
+                                <TextField
+                                    id="outlined-basic-2"
+                                    label="Email"
+                                    variant="outlined"
+                                    style={{ marginTop: "15px" }}
+                                    className="bg-white text-white ml-14 w-[402px]"
+                                />
+
+                                <button className="bg-[#2194FF] w-[341px] ml-4 h-[87px] mt-4 p-4 rounded-xl" style={{ marginLeft: "30px" }}>
+                                    <TopOrnament2 />
+                                    <p style={{ zIndex: "-10" }} className='text-[#F1F1F1] font-bold text-2xl mt-[-25px]'>  Заказать доставку газа <br />
+                                        в газгольдер</p>
+                                    <BottomOrnament2 />
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                </section>
+                <section className=''>
+                    <p className="">Отзывы наших клиентов</p>
+                    <div className="relative">
+                        <div className="flex items-center justify-between absolute top-1/2 left-0 w-full transform -translate-y-1/2">
+                            <button
+                                onClick={prevSlide}
+                                className="bg-gray-800 text-white px-4 py-2 rounded-full mr-2"
+                            >
+                                Prev
+                            </button>
+                            <button
+                                onClick={nextSlide}
+                                className="bg-gray-800 text-white px-4 py-2 rounded-full ml-2"
+                            >
+                                Next
+                            </button>
+                        </div>
+                        <div className="flex justify-center items-center">
+                            {items.map((item, index) => (
+                                <div
+                                    key={index}
+                                    className={`${index === currentSlide ? 'block' : 'hidden'
+                                        } absolute left-1/2 transform -translate-x-1/2 transition-all duration-300`}
+                                >
+                                    <div className="flex">
+                                        <div className="w-1/2">
+                                            <img
+                                                src={item.image}
+                                                alt={`Slide ${index}`}
+                                                className="w-full h-auto"
+                                            />
+                                        </div>
+                                        <div className="w-1/2 p-4 bg-white">
+                                            <h2 className="text-2xl font-bold mb-2">{item.title}</h2>
+                                            <p>{item.description}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        <div className="flex justify-center mt-4">
+                            {items.map((_, index) => (
+                                <div
+                                    key={index}
+                                    onClick={() => setCurrentSlide(index)}
+                                    className={`w-4 h-4 bg-gray-500 rounded-full mx-2 cursor-pointer ${index === currentSlide ? 'bg-gray-800' : ''
+                                        }`}
+                                />
+                            ))}
+                        </div>
+                    </div>
                 </section>
             </main>
         </div>
