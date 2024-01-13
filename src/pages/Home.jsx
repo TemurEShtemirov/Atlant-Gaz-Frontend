@@ -20,6 +20,7 @@ import Lenta from '../assets/images/lenta.png'
 import Clock from '../assets/images/clock.png'
 import Sert from '../assets/images/sert.png'
 import Transp from '../assets/images/transp.png'
+import ManagerImage from '../assets/images/manager.png'
 
 import { CloseIcon } from '../assets/images/CloseIcon'
 import { TextField } from '@mui/material'
@@ -27,7 +28,16 @@ import CreditCard from '../assets/images/CreditCard'
 import Gas from '../assets/images/Gas'
 import classNames from 'classnames';
 
-import { images } from '../components'
+import LogoRosNeft from "../assets/images/rosneft.png";
+import LogoBashNeft from "../assets/images/bashneft.png";
+import TransNeft from "../assets/images/transneft.png";
+import GazProm from "../assets/images/GazProm";
+import TatNeft from "../assets/images/tatneft.png";
+import Map from '../assets/images/map.png'
+
+
+import { images, items, Logos } from '../components'
+import LukOil from '../assets/images/LukOil'
 
 
 export default function Home() {
@@ -35,6 +45,7 @@ export default function Home() {
     const [isModalOpen, setModalOpen] = useState(false);
     const [currentImage, setCurrentImage] = useState(0);
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [open, setOpen] = useState(false);
 
     const nextSlide = () => {
         setCurrentSlide((prev) => (prev + 1) % items.length);
@@ -530,40 +541,51 @@ export default function Home() {
                     )}
                 </section>
                 <section className=''>
-                    <p className="">Отзывы наших клиентов</p>
-                    <div className="relative">
+                    <p className="text-[#F1F1F1] text-center text-4xl font-bold not-italic font-mono pt-[40px]">Отзывы наших клиентов</p>
+                    <div className="relative mt-[270px]">
                         <div className="flex items-center justify-between absolute top-1/2 left-0 w-full transform -translate-y-1/2">
                             <button
                                 onClick={prevSlide}
-                                className="bg-gray-800 text-white px-4 py-2 rounded-full mr-2"
+                                className="text-white px-4 py-2 mr-2 transition-all duration-300"
                             >
-                                Prev
+                                <svg xmlns="http://www.w3.org/2000/svg" width={49} height={74} viewBox="0 0 49 74" fill="none">
+                                    <path d="M48 21L30 37L48 53" stroke="#2194FF" />
+                                    <path d="M42 11L16 37L42 63" stroke="#2194FF" />
+                                    <path d="M38 1L1 37L38 73" stroke="#2194FF" />
+                                </svg>
+
                             </button>
                             <button
                                 onClick={nextSlide}
-                                className="bg-gray-800 text-white px-4 py-2 rounded-full ml-2"
+                                className=" text-white px-4 py-2 ml-2 transition-all duration-300"
                             >
-                                Next
+                                <svg xmlns="http://www.w3.org/2000/svg" width={49} height={74} viewBox="0 0 49 74" fill="none">
+                                    <path d="M1 21L19 37L1 53" stroke="#2194FF" />
+                                    <path d="M7 11L33 37L7 63" stroke="#2194FF" />
+                                    <path d="M11 1L48 37L11 73" stroke="#2194FF" />
+                                </svg>
+
                             </button>
                         </div>
                         <div className="flex justify-center items-center">
                             {items.map((item, index) => (
                                 <div
                                     key={index}
-                                    className={`${index === currentSlide ? 'block' : 'hidden'
-                                        } absolute left-1/2 transform -translate-x-1/2 transition-all duration-300`}
+                                    className={`absolute left-1/2 transform -translate-x-1/2 transition-all duration-300 opacity-${index === currentSlide ? '100' : '0'
+                                        }`}
                                 >
-                                    <div className="flex">
+                                    <div className="flex bg-white w-[756px] h-[320px] rounded-xl">
                                         <div className="w-1/2">
                                             <img
                                                 src={item.image}
                                                 alt={`Slide ${index}`}
-                                                className="w-full h-auto"
+                                                className="w-[259px] h-auto rounded-xl m-[10px] ml-[50px]"
                                             />
                                         </div>
-                                        <div className="w-1/2 p-4 bg-white">
-                                            <h2 className="text-2xl font-bold mb-2">{item.title}</h2>
-                                            <p>{item.description}</p>
+                                        <div className="w-1/2 p-4 bg-white ml-[-50px]">
+                                            <h2 className="text-3xl font-extrabold mb-2 text-[#2194FF] font-['Russo_One'] font-mono not-italic">{item.name}</h2>
+                                            <h2 className="text-2xl font-bold mb-2 text-[#2D2D2D] font-['Russo_One'] text-[20px] font-bold not-italic font-mono ">{item.city}</h2>
+                                            <p className="text-[#2D2D2D] font-['Open_Sans'] text-[16px] not-italic font-normal w-[400px]">{item.otziv}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -581,7 +603,254 @@ export default function Home() {
                         </div>
                     </div>
                 </section>
+                <section className='mt-[200px]' style={{ backgroundColor: 'rgba(33, 148, 255, 0.05)', paddingBottom: "50px" }}>
+                    <p className="text-[#2194FF] font-['Russo_One'] text-center w-full text-4xl not-italic font-bold font-mono pt-[37px]">Ответы на часто задаваемые вопросы</p>
+                    <div className="w-full mt-[51px]">
+                        <input
+                            id="expandCollapse"
+                            type="checkbox"
+                            checked={open}
+                            className="peer sr-only"
+                        />
+                        <label
+                            htmlFor="expandCollapse"
+                            className={classNames(
+                                "w-full flex justify-center items-center text-[#F1F1F1] font-['Open_Sans'] text-[16px] font-bold not-italic font-mono uppercase letter",
+                                { 'transition-transform': true },
+                            )}
+                            onClick={() => setOpen(!open)}
+                        >
+                            {open ? 'Less information' : 'А вы не испортите газон у меня и соседей?'}
+                        </label>
+                        <div
+                            className={classNames(
+                                'overflow-hidden h-0',
+                                'peer-checked:h-auto peer-checked:overflow-scroll transition-max-height ease-in-out duration-300',
+                                { 'animate-fade-in': open },
+                            )}
+                        >
+                            <p className={classNames("text-[#F1F1F1] font-['Open_Sans'] text-[16px] not-italic font-normal ")}>
+                                За счёт длинны в 50 м. делаем заправку не заезжая и не портим газон, а так же не мешаем соседям
+                            </p>
+                        </div>
+                    </div>
+                    <div className="w-full mt-[51px]">
+                        <input
+                            id="expandCollapse"
+                            type="checkbox"
+                            checked={open}
+                            className="peer sr-only"
+                        />
+                        <label
+                            htmlFor="expandCollapse"
+                            className={classNames(
+                                "w-full flex justify-center items-center text-[#F1F1F1] font-['Open_Sans'] text-[16px] font-bold not-italic font-mono uppercase letter",
+                                { 'transition-transform': true },
+                            )}
+                            onClick={() => setOpen(!open)}
+                        >
+                            {open ? 'Less information' : 'А вы не испортите газон у меня и соседей?'}
+                        </label>
+                        <div
+                            className={classNames(
+                                'overflow-hidden h-0',
+                                'peer-checked:h-auto peer-checked:overflow-scroll transition-max-height ease-in-out duration-300',
+                                { 'animate-fade-in': open },
+                            )}
+                        >
+                            <p className={classNames("text-[#F1F1F1] font-['Open_Sans'] text-[16px] not-italic font-normal ")}>
+                                За счёт длинны в 50 м. делаем заправку не заезжая и не портим газон, а так же не мешаем соседям
+                            </p>
+                        </div>
+                    </div>
+                    <div className="w-full mt-[51px]">
+                        <input
+                            id="expandCollapse"
+                            type="checkbox"
+                            checked={open}
+                            className="peer sr-only"
+                        />
+                        <label
+                            htmlFor="expandCollapse"
+                            className={classNames(
+                                "w-full flex justify-center items-center text-[#F1F1F1] font-['Open_Sans'] text-[16px] font-bold not-italic font-mono uppercase letter",
+                                { 'transition-transform': true },
+                            )}
+                            onClick={() => setOpen(!open)}
+                        >
+                            {open ? 'Less information' : 'А вы не испортите газон у меня и соседей?'}
+                        </label>
+                        <div
+                            className={classNames(
+                                'overflow-hidden h-0',
+                                'peer-checked:h-auto peer-checked:overflow-scroll transition-max-height ease-in-out duration-300',
+                                { 'animate-fade-in': open },
+                            )}
+                        >
+                            <p className={classNames("text-[#F1F1F1] font-['Open_Sans'] text-[16px] not-italic font-normal ")}>
+                                За счёт длинны в 50 м. делаем заправку не заезжая и не портим газон, а так же не мешаем соседям
+                            </p>
+                        </div>
+                    </div>
+                    <div className="w-full mt-[51px]">
+                        <input
+                            id="expandCollapse"
+                            type="checkbox"
+                            checked={open}
+                            className="peer sr-only"
+                        />
+                        <label
+                            htmlFor="expandCollapse"
+                            className={classNames(
+                                "w-full flex justify-center items-center text-[#F1F1F1] font-['Open_Sans'] text-[16px] font-bold not-italic font-mono uppercase letter",
+                                { 'transition-transform': true },
+                            )}
+                            onClick={() => setOpen(!open)}
+                        >
+                            {open ? 'Less information' : 'А вы не испортите газон у меня и соседей?'}
+                        </label>
+                        <div
+                            className={classNames(
+                                'overflow-hidden h-0',
+                                'peer-checked:h-auto peer-checked:overflow-scroll transition-max-height ease-in-out duration-300',
+                                { 'animate-fade-in': open },
+                            )}
+                        >
+                            <p className={classNames("text-[#F1F1F1] font-['Open_Sans'] text-[16px] not-italic font-normal ")}>
+                                За счёт длинны в 50 м. делаем заправку не заезжая и не портим газон, а так же не мешаем соседям
+                            </p>
+                        </div>
+                    </div>
+                </section>
             </main>
+            <footer>
+                <section className="">
+                    <div className="grid grid-cols-2 gap-2 justify-center mt-[55px]">
+                        <div className="ml-[150px]">
+                            <p className="text-center w-[567px] text-[#F1F1F1] font-['Russo_One'] text-4xl font-mono font-bold not-italic">Не нашли ответа на свой вопрос задайте их нашему специалисту </p>
+                            <form className='ml-[40px] mt-[50px]'>
+                                <input type="text" placeholder='Name' className="w-[402px] h-[51px] rounded-xl bg-[#fff]  p-2" style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25) inset", border: "1px solid #DEDEDE" }} />
+                                <input type="email" placeholder='Email' className="w-[402px] h-[51px] rounded-xl bg-[#fff] mt-[24px] p-2" style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25) inset", border: "1px solid #DEDEDE" }} />
+                                <textarea name="" placeholder='Your question' className='w-[402px] h-[112px] rounded-xl bg-[#fff]  p-2 mt-[24px]' id="" cols="30" rows="10" style={{ boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25) inset", border: "1px solid #DEDEDE" }}></textarea>
+                                <button className="w-[220px] h-[47px] rounded-2xl bg-[#2194FF] text-[#F1F1F1] text-center font-['Open_Sans'] font-bold not-italic font-mono text-xl mt-[24px]">Задать вопрос </button>
+                            </form>
+                        </div>
+                        <div className="">
+                            {/* <div className="" > */}
+                            <img src={ManagerImage} alt="Image Of Roman Sh." className='w-[366px] h-[454px] rounded-2xl' />
+                            {/* </div> */}
+                            <div className="w-[209px] h-[83px] rounded-2xl p-3 pl-[26px] mt-[-120px]" style={{ backgroundColor: 'rgba(33, 148, 255, 1.8)', zIndex: "auto" }} >
+                                <p className="text-[#F1F1F1] font-['Open_Sans'] font-mono font-bold text-3xl not-italic">Роман Ш.</p>
+                                <p className="text-[#F1F1F1] font-['Open_Sans'] font-mono font-normal text-base not-italic">Старший менеджер</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section className="">
+
+                    <div className="grid grid-cols-6 gap-6 mt-[60px] ml-[80px]">
+
+                        <div className="w-[166px] h-[66px] rounded-xl bg-[#fff] ml-[10px] pl-[43px] pt-[7px]">
+                            <img src={LogoRosNeft} alt="Logo" />
+                        </div>
+
+                        <div className="w-[166px] h-[66px] rounded-xl bg-[#fff] ml-[10px] pl-[28px] pt-[21px]">
+                            <img src={LogoBashNeft} alt="Logo" />
+                        </div>
+                        <div className="w-[166px] h-[66px] rounded-xl bg-[#fff] ml-[10px] pl-[27px] pt-[12px]">
+                            <img src={TransNeft} alt="Logo" />
+                        </div>
+                        <div className="w-[166px] h-[66px] rounded-xl bg-[#fff] ml-[10px] pl-[37px] pt-[7px]">
+                            <GazProm />
+                        </div>
+                        <div className="w-[166px] h-[66px] rounded-xl bg-[#fff] ml-[10px] pl-[25px] pt-[23px]">
+                            <LukOil />
+                        </div>
+                        <div className="w-[166px] h-[66px] rounded-xl bg-[#fff] ml-[10px] pl-[19px] pt-[9px]">
+                            <img src={TatNeft} alt="Logo" />
+                        </div>
+                    </div>
+                </section>
+                <section className="mt-[34px]">
+                    <p className="text-center w-full text-[#2194FF] font-['Russo_One'] font-mono text-4xl font-bold not-italic">Закажи прямо сейчас и получи
+                        бесплатную установку телеметрии﻿</p>
+
+                    <button onClick={openModal} className="text-center ml-[565px] bg-[#2194FF] w-96 h-auto text-[#F1F1F1] font-['Russo_One'] font-mono font-semibold not-italic text-3xl text-shadow-sm shadow-indigo-500/50 rounded-xl mt-[20px] ">
+                        <TopOrnament />
+                        Заказать газ
+                        <BottomOrnament />
+                    </button>
+
+                    {isModalOpen && (
+                        <div className="modal-overlay bg-white shadow-md w-[462px] h-[408px] px-8 pt-6 pb-8 mb-4 rounded-xl" style={{ zIndex: "9999" }} >
+                            <button className=" modal-close bg-white m-3" onClick={closeModal}>
+                                <CloseIcon />
+
+                            </button>
+                            <div className="modal bg-white w-auto" >
+                                <div className="flex justify-between items-center mb-4 bg-white">
+                                    <h2 className="text-[#2194FF] font-extrabold text-2xl uppercase bg-white text-center w-full">
+                                        Доставим газ <br />
+                                        за 4 часа
+                                    </h2>
+
+                                </div>
+
+                                <TextField
+                                    id="outlined-basic-1"
+                                    label="Name"
+                                    variant="outlined"
+                                    // style={{ left: "160px", marginTop: "15px", color: "white" }}
+                                    className="mt-4 bg-white ml-14 justify-center text-center w-[402px]"
+                                />
+                                <br />
+                                <TextField
+                                    id="outlined-basic-2"
+                                    label="Email"
+                                    variant="outlined"
+                                    style={{ marginTop: "15px" }}
+                                    className="bg-white text-white ml-14 w-[402px]"
+                                />
+
+                                <button className="bg-[#2194FF] w-[341px] ml-4 h-[87px] mt-4 p-4 rounded-xl" style={{ marginLeft: "30px" }}>
+                                    <TopOrnament2 />
+                                    <p style={{ zIndex: "-10" }} className='text-[#F1F1F1] font-bold text-2xl mt-[-25px]'>  Заказать доставку газа <br />
+                                        в газгольдер</p>
+                                    <BottomOrnament2 />
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                    <div className="w-[1140px] h-[488px] rounded-3xl bg-[#fff] grid grid-cols-2 gap-2 ml-[240px] mt-[50px]" style={{ boxShadow: "0px 0px 20px 0px rgba(0, 0, 0, 0.25)" }}>
+                        <div className="pt-[40px] pl-[40px]">
+                            <p className="text-[#2194FF] font-['Russo_One'] text-4xl font-bold not-italic uppercase font-mono w-[380px] not-italic">Посетите наш уютный офис</p>
+                            <p className="text-[#1B2639] font-['Open_Sans'] font-mono text-lg font-bold uppercase  not-italic ">где мы сможем вас полностью
+                                проконсультировать по всем  вопросам</p>
+                            <hr className='w-[490px] mt-[21px] mb-[31px]' />
+                            <div className="">
+                                <p className="text-[#2194FF] font-['Open_Sans'] text-lg font-bold uppercase font-mono not-italic">Офис</p>
+                                <p className="text-[#1B2639] font-['Open_Sans'] font-mono not-italic text-lg ">Видное , Белокаменное шоссе, 20</p>
+                            </div>
+                            <div className="mt-[45px]">
+                                <p className="text-[#2194FF] font-['Open_Sans'] text-lg font-bold uppercase font-mono not-italic">Телефон:</p>
+                                <p className="text-[#1B2639] font-['Open_Sans'] font-mono not-italic text-lg ">+7 926 330-68-34</p>
+                            </div>
+                        </div>
+                        <div className="">
+                            <img src={Map} alt="" />
+                            <svg className="mt-[-210px] ml-[260px]" width={74} height={74} viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M37 0C51.3522 0 63.0156 11.6637 63.0156 26.0156C63.0156 30.8719 61.6712 35.5982 59.1131 39.674L38.7636 72.976C38.4164 73.5397 37.8961 73.8867 37.2889 73.9734C36.4654 74.1033 35.5544 73.7566 35.0776 72.9328L14.6698 39.327C12.2419 35.338 10.9844 30.6986 10.9844 26.0156C10.9844 11.6637 22.6478 0 37 0ZM37 39.0234C44.2841 39.0234 50.0078 33.1266 50.0078 26.0156C50.0078 18.8612 44.1544 13.0078 37 13.0078C29.8456 13.0078 23.9922 18.8612 23.9922 26.0156C23.9922 33.0832 29.6291 39.0234 37 39.0234Z" fill="#0079C2" />
+                                <path d="M37 0V13.0078C29.8456 13.0078 23.9922 18.8612 23.9922 26.0156C23.9922 33.0832 29.6291 39.0234 37 39.0234V73.9987C36.2601 74.0159 35.4993 73.6612 35.0777 72.9328L14.6699 39.327C12.2419 35.338 10.9844 30.6986 10.9844 26.0156C10.9844 11.6637 22.6478 0 37 0Z" fill="#2194FF" />
+                            </svg>
+
+                        </div>
+                    </div>
+                    <div className=" grid grid-cols-2 gap-2 mb-[50px] mt-[52px] ml-[300px]">
+                        <div className=""><a href="" className="text-[#F1F1F1] font-['Open_Sans'] text-sm font-bold not-italic font-mono">Политика конфиденциальности</a></div>
+                        <div className=""><a href="" className="text-[#F1F1F1] font-['Open_Sans'] text-sm font-bold not-italic font-mono">Согласие на обработку персональных данных</a></div>
+                    </div>
+                </section>
+            </footer>
         </div>
     );
 }
